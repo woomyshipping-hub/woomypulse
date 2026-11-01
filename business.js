@@ -1,6 +1,6 @@
 // 실적 리포트: admin sales/members/applications fused with GA4 visits (data: live.business from the encrypted vault).
 (()=>{
-const css=`.biz-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.biz-kpi{border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff}
+const css=`.biz-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.biz-kpi{border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--card)}
 .biz-kpi span{font-size:var(--fs-xs);color:var(--muted)}.biz-kpi b{display:block;font-size:24px;letter-spacing:-.6px;margin:8px 0 6px}.biz-kpi small{font-size:var(--fs-xs)}
 .biz-up{color:var(--good)}.biz-down{color:var(--bad)}.biz-flat{color:var(--muted)}
 .biz-flow{display:grid;grid-template-columns:1fr 1fr;gap:14px}.biz-flow h3,.biz-mix h3{font-size:var(--fs-sm);color:#526078;margin:0 0 10px}
