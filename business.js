@@ -67,8 +67,8 @@ window.renderBusiness=function(b){if(!b||!b.months)return '<p>실적 데이터�
   <div class="biz-callouts"><div><span>12개월 매출</span><b>${man(y.sales)}</b></div><div><span>월평균 (완료된 달)</span><b>${man(avg)}</b></div><div><span>가장 많은 달</span><b>${E(ms.find(m=>m.month===b.best.month).label)} · ${man(b.best.sales)}</b></div><div><span>가장 적은 달</span><b>${E(ms.find(m=>m.month===b.worst.month).label)} · ${man(b.worst.sales)}</b></div></div>
   <div class="biz-scroll"><table><thead><tr><th>월</th><th>매출</th><th>배송대행 결제</th><th>구매대행 결제</th><th>신규 회원</th><th>방문자</th><th>배송대행 신청</th><th>배송 1건 평균</th></tr></thead><tbody>${rows}
   <tr class="biz-total"><td>합계</td><td>${man(y.sales)}</td><td>${n(y.shipPayments)}</td><td>${n(y.buyPayments)}</td><td>${n(y.newMembers)}</td><td>—</td><td>${n(y.applications)}</td><td>${won(y.shipPayments?y.shipSales/y.shipPayments:null)}</td></tr></tbody></table></div>
-  <p class="note">방문자는 달마다 따로 센 숫자라 합계를 내지 않습니다. 배송대행 ${man(y.shipSales)} · 구매대행 ${man(y.buySales)} · 예치금 충전 ${man(y.topups)}(매출에 미포함).</p></section>`;
- return `<div class="easy-report-head"><div><div class="easy-tag">실적 리포트</div><h2>${E(mname(c))} 실적 · ${E(p.label)}과 비교</h2><p>관리자 페이지의 실제 결제·회원·신청 숫자와 GA4 방문 숫자를 합쳤습니다. ${E(b.throughDate)}까지 집계.</p></div></div>
+  <p class="note">배송대행 ${man(y.shipSales)} · 구매대행 ${man(y.buySales)} · 예치금 충전 ${man(y.topups)}(매출에 미포함).</p></section>`;
+ return `<div class="easy-report-head"><div><div class="easy-tag">실적 리포트</div><h2>${E(mname(c))} 실적 · ${E(p.label)}과 비교</h2><p>${E(b.throughDate)}까지</p></div></div>
  <div class="biz-kpis">${kpis}</div>
  ${trends(ms)}
  ${section('summary','흐름',`${c.label} 방문에서 결제까지`,`<div class="biz-flow"><div><h3>사람</h3>${bars(people,'명')}</div><div><h3>일</h3>${bars(work,'건')}<div class="biz-step"><span>구매대행 결제</span><span class="biz-track"></span><b>${n(c.buyPayments)}건</b><em>별도 서비스</em></div></div></div>`)}
@@ -104,9 +104,9 @@ window.renderSettlement=function(st){if(!st||!st.months)return '<p>손익 정산
  const cm=ms.filter(m=>Object.keys(m.carrier||{}).length);
  const carr=`<div class="biz-mix" style="margin-top:16px;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))"><div><h3>나르다 · 건수와 건당 수익률</h3>${cm.filter(m=>m.carrier.nardaCount).map(m=>`<div class="biz-row"><span>${lab(m)}</span><b>${n(m.carrier.nardaCount)}건 · ${m.carrier.nardaMargin}%</b></div>`).join('')}<p class="note">3월(유가 상승 전) 37.35% → 5월 27.53%. 유가 상승 뒤 건당 수익률이 크게 떨어졌습니다.</p></div>
   <div><h3>팬스타 · 건수</h3>${cm.filter(m=>m.carrier.panstarCount).map(m=>`<div class="biz-row"><span>${lab(m)}</span><b>${n(m.carrier.panstarCount)}건 · ${man(m.panstar)}</b></div>`).join('')}<p class="note">4월은 건수가 22% 늘었지만 순수익은 7% 줄었습니다.</p></div>
-  <div><h3>운임 (엔)</h3>${cm.filter(m=>m.carrier.panstarFreightJpy||m.carrier.nardaFreightJpy).map(m=>`<div class="biz-row"><span>${lab(m)}</span><b>${[m.carrier.panstarFreightJpy?'팬스타 ¥'+n(m.carrier.panstarFreightJpy):'',m.carrier.nardaFreightJpy?'나르다 ¥'+n(m.carrier.nardaFreightJpy):''].filter(Boolean).join(' · ')}</b></div>`).join('')}<p class="note">운임비 기준. 수수료를 더한 금액은 손익표 원본 참고.</p></div></div>`;
+  <div><h3>운임 (엔)</h3>${cm.filter(m=>m.carrier.panstarFreightJpy||m.carrier.nardaFreightJpy).map(m=>`<div class="biz-row"><span>${lab(m)}</span><b>${[m.carrier.panstarFreightJpy?'팬스타 ¥'+n(m.carrier.panstarFreightJpy):'',m.carrier.nardaFreightJpy?'나르다 ¥'+n(m.carrier.nardaFreightJpy):''].filter(Boolean).join(' · ')}</b></div>`).join('')}</div></div>`;
  const partialNotes=ms.filter(m=>!m.complete).map(m=>`${lab(m)}: ${m.notes.join(' ')}`);
- return `<div class="easy-report-head"><div><div class="easy-tag">월별 손익</div><h2>우마이직구 손익 정산 · 2026년</h2><p>${E(st.source)}. 공헌이익 = 배송비 순수익 + 기타 수익 − 고정비.</p></div></div>
+ return `<div class="easy-report-head"><div><div class="easy-tag">월별 손익</div><h2>우마이직구 손익 정산 · 2026년</h2></div></div>
  <div class="biz-kpis">${kpis}</div>${chart}${table}${section('info','구성','달마다 무엇이 들어왔고 나갔나',brk)}${section('summary','배송','배송사별 흐름',carr)}
  <p class="note">${partialNotes.map(E).join('<br>')}<br>8·9월 손익표는 아직 채널에 없습니다. 고객 이름은 넣지 않았습니다.</p>`};
 })();
