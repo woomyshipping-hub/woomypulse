@@ -1,21 +1,21 @@
 // 실적 리포트: admin sales/members/applications fused with GA4 visits (data: live.business from the encrypted vault).
 (()=>{
 const css=`.biz-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.biz-kpi{border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff}
-.biz-kpi span{font-size:12px;color:var(--muted)}.biz-kpi b{display:block;font-size:24px;letter-spacing:-.6px;margin:8px 0 6px}.biz-kpi small{font-size:12px}
-.biz-up{color:#28a27d}.biz-down{color:#d1574b}.biz-flat{color:var(--muted)}
-.biz-flow{display:grid;grid-template-columns:1fr 1fr;gap:14px}.biz-flow h3,.biz-mix h3{font-size:13px;color:#526078;margin:0 0 10px}
-.biz-step{display:flex;align-items:center;gap:10px;margin:8px 0;font-size:13px}.biz-step>span:first-child{width:92px;flex:none}.biz-track{flex:1;height:10px;border-radius:5px;background:#f0f2f7;overflow:hidden}.biz-track i{display:block;height:100%;border-radius:5px;background:#7181ed;min-width:3px}
-.biz-step em{font-style:normal;color:var(--muted);font-size:11px;width:104px;flex:none;text-align:right;white-space:nowrap}.biz-step b{width:72px;flex:none;text-align:right}
+.biz-kpi span{font-size:var(--fs-xs);color:var(--muted)}.biz-kpi b{display:block;font-size:24px;letter-spacing:-.6px;margin:8px 0 6px}.biz-kpi small{font-size:var(--fs-xs)}
+.biz-up{color:var(--good)}.biz-down{color:var(--bad)}.biz-flat{color:var(--muted)}
+.biz-flow{display:grid;grid-template-columns:1fr 1fr;gap:14px}.biz-flow h3,.biz-mix h3{font-size:var(--fs-sm);color:#526078;margin:0 0 10px}
+.biz-step{display:flex;align-items:center;gap:10px;margin:8px 0;font-size:var(--fs-sm)}.biz-step>span:first-child{width:92px;flex:none}.biz-track{flex:1;height:10px;border-radius:5px;background:#f0f2f7;overflow:hidden}.biz-track i{display:block;height:100%;border-radius:5px;background:#7181ed;min-width:3px}
+.biz-step em{font-style:normal;color:var(--muted);font-size:var(--fs-xs);width:104px;flex:none;text-align:right;white-space:nowrap}.biz-step b{width:72px;flex:none;text-align:right}
 .biz-mix{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.biz-mix>div{border:1px solid var(--line);border-radius:12px;padding:16px}
-.biz-row{display:flex;justify-content:space-between;font-size:13px;margin:7px 0;gap:10px}.biz-row span{color:#526078}
+.biz-row{display:flex;justify-content:space-between;font-size:var(--fs-sm);margin:7px 0;gap:10px}.biz-row span{color:#526078}
 .biz-year{margin-top:22px}.biz-year table td,.biz-year table th{text-align:right;white-space:nowrap}.biz-year table td:first-child,.biz-year table th:first-child{text-align:left}
 .biz-bar{display:inline-block;height:8px;border-radius:4px;background:#b8c1f6;vertical-align:middle;margin-right:8px}.biz-total td{font-weight:700;background:#fafbfc}
-.biz-callouts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}.biz-callouts div{background:#f6f7ff;border-radius:10px;padding:14px}.biz-callouts span{font-size:11px;color:var(--muted)}.biz-callouts b{display:block;font-size:17px;margin-top:6px}
+.biz-callouts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}.biz-callouts div{background:#f6f7ff;border-radius:10px;padding:14px}.biz-callouts span{font-size:var(--fs-xs);color:var(--muted)}.biz-callouts b{display:block;font-size:17px;margin-top:6px}
 .biz-scroll{overflow-x:auto}
-.biz-trend{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}.biz-trend .card{padding:18px}.biz-trend h3{font-size:14px;margin:0 0 4px}.biz-legend{display:flex;gap:14px;font-size:11px;color:var(--muted);margin:6px 0 4px}.biz-legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:-1px}
-.biz-trend svg text{font-size:10px;fill:#9ca5b5}.biz-trend svg .val{fill:#526078;font-size:9.5px}
+.biz-trend{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}.biz-trend .card{padding:18px}.biz-trend h3{font-size:var(--fs-md);margin:0 0 4px}.biz-legend{display:flex;gap:14px;font-size:var(--fs-xs);color:var(--muted);margin:6px 0 4px}.biz-legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.biz-trend svg text{font-size:var(--fs-xs);fill:var(--muted)}.biz-trend svg .val{fill:#526078;font-size:var(--fs-xs)}
 @media(max-width:900px){.biz-kpis,.biz-callouts{grid-template-columns:repeat(2,minmax(0,1fr))}.biz-flow,.biz-mix,.biz-trend{grid-template-columns:1fr}}
-@media(max-width:720px){.biz-step{gap:8px;font-size:12px}.biz-step>span:first-child{width:72px}.biz-step b{width:auto;white-space:nowrap}.biz-step em{display:none}.biz-kpi b{font-size:20px}.biz-mix>div,.biz-trend .card{padding:14px}}`;
+@media(max-width:720px){.biz-step{gap:8px;font-size:var(--fs-xs)}.biz-step>span:first-child{width:72px}.biz-step b{width:auto;white-space:nowrap}.biz-step em{display:none}.biz-kpi b{font-size:20px}.biz-mix>div,.biz-trend .card{padding:14px}}`;
 const st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
 const E=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const n=v=>v==null?'—':Math.round(v).toLocaleString('ko-KR');

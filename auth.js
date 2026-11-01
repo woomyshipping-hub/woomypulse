@@ -29,9 +29,9 @@ window.fetch=async(input,init)=>{let url=typeof input==='string'?input:input.url
 function gate(){let d=document.createElement('div');d.id='loginGate';d.innerHTML=`<style>
 #loginGate{position:fixed;inset:0;z-index:1000;background:var(--bg,#f5f6f8);display:grid;place-items:center;padding:16px}
 #loginGate form{background:white;border:1px solid var(--line,#e9edf2);border-radius:16px;padding:32px;width:min(380px,100%);box-shadow:0 20px 60px #19243a14}
-#loginGate h1{font-size:22px;margin:14px 0 6px}#loginGate p{font-size:13px}#loginGate input{width:100%;padding:12px;border:1px solid #dfe3eb;border-radius:9px;margin:18px 0 10px;font:inherit}
-#loginGate button{width:100%;background:var(--blue,#5169ee);color:white;border:0;border-radius:9px;padding:12px;font:inherit;font-weight:650;cursor:pointer}
-#loginGate button:disabled{opacity:.6}#loginErr{color:#d14b4b;font-size:12px;min-height:18px;margin-top:10px}</style>
+#loginGate h1{font-size:22px;margin:14px 0 6px}#loginGate p{font-size:var(--fs-sm)}#loginGate input{width:100%;padding:12px;border:1px solid #dfe3eb;border-radius:9px;margin:18px 0 10px;font:inherit}
+#loginGate button{width:100%;background:var(--blue,#3549d0);color:white;border:0;border-radius:9px;padding:12px;font:inherit;font-weight:650;cursor:pointer}
+#loginGate button:disabled{opacity:.6}#loginErr{color:#bb2a2a;font-size:var(--fs-xs);min-height:18px;margin-top:10px}</style>
 <form autocomplete="on"><span class="mark">w</span><b style="font-size:20px">woomy pulse.</b><h1>로그인</h1><p>우마이직구 대시보드는 비밀번호가 있어야 볼 수 있습니다.</p>
 <input type="password" id="loginPw" placeholder="비밀번호" autocomplete="current-password" required autofocus><button id="loginBtn">들어가기</button><div id="loginErr"></div></form>`;
  document.body.appendChild(d);
